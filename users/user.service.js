@@ -1,9 +1,11 @@
 ﻿// users hardcoded for simplicity, store in a db for production applications
-const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' },
+{ id: 2, username: 'test2', password: 'test123', firstName: 'Dennis', lastName: 'Droße' }];
 
 module.exports = {
     authenticate,
-    getAll
+    getAll,
+    getUserByID
 };
 
 async function authenticate({ username, password }) {
@@ -20,3 +22,9 @@ async function getAll() {
         return userWithoutPassword;
     });
 }
+
+async function getUserByID({ id }) {
+    const userToReturn = users.find(user => user.id  === Number(id));
+    return userToReturn;
+}
+
